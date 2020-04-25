@@ -10,14 +10,21 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'mirror',
-    props: {
-        inputValue: String
+    data() {
+        return {
+            borderColor: 'orange',
+        }
     },
     computed: {
+        ...mapGetters({
+            inputString: 'getInputString'
+        }),
         mirror: function() {
-            let tempArray = this.inputValue.split('');
+            let tempArray = this.inputString.split('');
             let resultString = '';
 
             tempArray.reverse();
@@ -25,11 +32,6 @@ export default {
             resultString = tempArray.join('');
 
             return resultString;
-        }
-    },
-    data() {
-        return {
-            borderColor: 'orange',
         }
     }
 }

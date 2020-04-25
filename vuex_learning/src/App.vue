@@ -5,7 +5,7 @@
       <input v-model="inputValue">
     </div>
     <div class="container">
-        <lowercase :inputValue = "inputValue" />
+        <lowercase />
         <uppercase :inputValue = "inputValue" />
         <togglecase :inputValue = "inputValue" />
         <mirror :inputValue = "inputValue" />
@@ -21,6 +21,8 @@ import togglecase from './components/togglecase';
 import mirror from './components/mirror';
 import nochange from './components/nochange';
 
+import {mapActions} from 'vuex';
+
 export default {
   name: 'App',
   components: {
@@ -34,7 +36,18 @@ export default {
     return {
       inputValue: '',
     }
-  }
+  },
+  watch: {
+    inputValue: function() {
+      this.updateInput(this.inputValue);
+    }
+  },
+  methods: {
+    ...mapActions({
+      updateInput: 'updateInputString'
+    }),
+  },
+
 }
 </script>
 
@@ -55,10 +68,6 @@ div {
 .container {
   display: flex;
   justify-content: center;
-}
-
-.result-div {
-  
 }
 
 .interface-name {

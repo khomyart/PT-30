@@ -10,20 +10,22 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'uppercase',
-    props: {
-        inputValue: String
-    }, 
-    computed: {
-        uppercase: function() { 
-            return this.inputValue.toUpperCase() 
-        },
-    },
     data() {
         return {
             borderColor: 'green',
         }
+    },
+    computed: {
+        ...mapGetters({
+            inputString: 'getInputString',
+        }),
+        uppercase: function() { 
+            return this.inputString.toUpperCase() 
+        },
     }
 }
 </script>

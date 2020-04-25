@@ -4,21 +4,25 @@
             nochange
         </div>
         <div class="interface-content">
-            {{ inputValue }}
+            {{ inputString }}
         </div>
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'nochange',
-    props: {
-        inputValue: String
-    },
     data() {
         return {
             borderColor: 'pink',
         }
+    },
+    computed: {
+        ...mapGetters({
+            inputString: 'getInputString'
+        })
     }
 }
 </script>

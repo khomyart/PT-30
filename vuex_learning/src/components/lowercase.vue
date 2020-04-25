@@ -10,24 +10,22 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'lowercase',
-    props: {
-        inputValue: String
-    },
-    computed: {
-        lowercase: function() { 
-            return this.inputValue.toLowerCase() 
-        },
-    },
     data() {
         return {
             borderColor: 'red',
         }
+    },
+    computed: {
+        ...mapGetters({
+            inputString: 'getInputString',
+        }),
+        lowercase: function() {
+            return this.inputString.toLowerCase();
+        }
     }
 }
 </script>
-
-<style>
-
-</style>

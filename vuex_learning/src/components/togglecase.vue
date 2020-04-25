@@ -10,14 +10,21 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'togglecase',
-    props: {
-        inputValue: String
+    data() {
+        return {
+            borderColor: 'blue',
+        }
     },
     computed: {
+        ...mapGetters({
+            inputString: 'getInputString',
+        }),
         togglecase: function() {
-            let tempArray = this.inputValue.split('');
+            let tempArray = this.inputString.split('');
             let resultArray = [];
             let resultString= '';
 
@@ -34,11 +41,6 @@ export default {
             resultString = resultArray.join('');
 
             return resultString;
-        }
-    },
-    data() {
-        return {
-            borderColor: 'blue',
         }
     }
 }
